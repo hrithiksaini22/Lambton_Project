@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todolistapp-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todolistapp
+  template:
+    metadata:
+      labels:
+        app: todolistapp
+    spec:
+      containers:
+        - name: todolistapp-container
+          image: hrtithik9876789/app:1.0 
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: todolistapp-service
+spec:
+  selector:
+    app: todolistapp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: NodePort
