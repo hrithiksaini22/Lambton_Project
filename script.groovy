@@ -25,7 +25,7 @@ def deployApp() {
     sshagent(['3.85.172.81']) {
                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@ip-172-31-57-210'
                      // Start Minikube
-                    sh 'minikube start --driver=docker'
+                    sh '/usr/local/bin/minikube start --driver=docker'
 
         // Apply deployment YAML
                     sh 'kubectl apply -f deployment.yaml'
