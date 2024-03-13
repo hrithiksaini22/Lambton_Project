@@ -10,7 +10,15 @@ def buildImage() {
 def deployApp() {
     echo 'deploying the application...'
     sshagent(['3.85.172.81']) {
-                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@44.202.116.136 "cd /home/ubuntu && touch yay"'
+                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@ip-172-31-57-210'
+                     // Start Minikube
+                    sh 'minikube start --driver=docker'
+
+        // Apply deployment YAML
+                    sh 'kubectl apply -f deployment.yaml'
+
+        // Port forward
+                    sh 'nohup kubectl port-forward svc/todolistapp-service 3000:3000 --address 0.0.0.0 >/dev/null 2>&1 &'
                 
                         }
 } 
