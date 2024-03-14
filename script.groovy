@@ -27,7 +27,7 @@ def deployApp() {
         sh 'ssh -o StrictHostKeyChecking=no ubuntu@ip-172-31-57-210 << EOF'
 
         // Start Minikube
-        minikube start --driver=docker
+        minikube start --driver docker
 
         // Apply deployment YAML
         kubectl apply -f deployment.yaml
