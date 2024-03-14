@@ -33,7 +33,7 @@ def deployApp() {
         kubectl apply -f deployment.yaml
 
         // Port forward
-        nohup kubectl port-forward svc/todolistapp-service 3000:3000 --address 0.0.0.0 >/dev/null 2>&1 &
+        nohup kubectl port-forward "svc/todolistapp-service" 3000:3000 --address 0.0.0.0 >/dev/null 2>&1 &
         
         EOF
     }
