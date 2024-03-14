@@ -23,9 +23,7 @@ def buildImage() {
 def deployApp() {
     echo 'deploying the application...'
     sshagent(['3.85.172.81']) {
-        script {
-            sshCommand remote: 'ubuntu@ip-172-31-57-210', command: 'bash /home/ubuntu/script.sh'
-       }
+        sh 'ssh -o StrictHostKeyChecking=no ubuntu@3.85.172.81 "cd /home/ubuntu && ./script.sh"'
     }
 }
 return this
